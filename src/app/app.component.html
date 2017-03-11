@@ -1,0 +1,81 @@
+<div class="top-bar">
+  <div class="row">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li class="menu-text">Business Contacts</li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="large-6 columns">
+    <button class="button">Add Business</button>
+  </div>
+  <div class="large-6 columns">
+    <label>Filter Category
+      <select (change)="filterCategory(filteredCategory.value)" #filteredCategory>
+        <option value="0">Select a category</option>
+        <option *ngFor="let cat of category" value="{{cat.name}}">{{cat.name}}</option>
+      </select>
+    </label>
+  </div>
+</div>
+
+<div *ngIf="appState == 'extend'">
+  <div class="row">
+    <div class="large-12 columns">
+       <button (click)="changeState('default')" class="button alert">Go Back</button>
+    </div>
+  </div>
+
+
+<div *ngFor="let biz of businesses">
+   <div *ngIf="biz.$key == activeKey">
+     <div class="row">
+       <div class="large-5 columns large-offset-1">
+         <h3>{{biz.company}}</h3>
+         <p>Category: {{biz.category}}</p>
+         <p>{{biz.description}}</p>
+       </div>
+       <div class="large-5 columns large-offset-1">
+          <p>Phone: {{biz.phone}}</p>
+          <p>Email: {{biz.email}}</p>
+       </div>
+     </div>
+   </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <div *ngIf="businesses">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Category</th>
+            <th>Phone</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let biz of businesses">
+            <td>{{biz.company}}</td>
+            <td>{{biz.category}}</td>
+            <td>{{biz.phone}}</td>
+            <td>
+              <button (click)="changeState('extend', biz.$key)" class="button">More</button>
+              <button class="button secondary">Edit</button>
+              <button class="button alert">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
