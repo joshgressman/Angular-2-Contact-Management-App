@@ -43,4 +43,27 @@ export class AppComponent implements OnInit {
    });
  }
 
+ addBusiness(company:string, cat:string, description:string, phone:string,email:string){
+   var created_at = new Date().toString();
+
+   var newBusiness = {
+     company: company,
+     category: cat,
+     years_in_business:null,
+     description: description,
+     phone: phone,
+     email: email,
+     street_address: null,
+     city: null,
+     state: null,
+     zipcode: null,
+     created_at: created_at
+   }
+
+   console.log(newBusiness);
+  this._firebaseService.addBusiness(newBusiness);
+
+  this.changeState('default');
+  }
+
 }
